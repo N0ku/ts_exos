@@ -17,5 +17,3 @@ function formatUser(user: any) {
   console.log(result);
   return result;
 }
-
-getUserSummary(1);
