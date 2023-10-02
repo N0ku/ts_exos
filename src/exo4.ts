@@ -83,3 +83,52 @@ const testAllPets = (): void => {
 testAllPets();
 
 //Exo 7
+class Queue<T> {
+    private elements: T[];
+    
+    constructor(elements: T[]) {
+        this.elements = elements;
+    }
+
+    enqueue(element: T): void {
+        this.elements.push(element);
+    }
+
+    dequeue(): T | null {
+        const e = this.elements.shift();
+        if(!e) return null;
+        return e;
+    }
+
+    isEmpty(): boolean {
+        return this.elements.length === 0;
+    }
+
+    size(): number {
+        return this.elements.length;
+    }
+}
+
+const testQueue = (): void => {
+    const queue = new Queue<number>([1, 2, 3]);
+    console.log(queue.size());
+    console.log(queue.dequeue());
+    console.log(queue.dequeue());
+    console.log(queue.isEmpty());
+
+    const queue2 = new Queue<string>(["a", "b", "c"]);
+    console.log(queue2.size());
+    console.log(queue2.dequeue());
+    console.log(queue2.dequeue());
+    console.log(queue2.isEmpty());
+
+    const queue3 = new Queue<boolean>([true, false, true]);
+    console.log(queue3.size());
+    console.log(queue3.dequeue());
+    console.log(queue3.dequeue());
+    console.log(queue3.isEmpty());
+}
+
+testQueue();
+
+//Exo 8
