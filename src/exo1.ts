@@ -1,12 +1,21 @@
+import axios from "axios";
 
-export function getUserSummary(id: number) {
-    
+export async function getUserSummary(id: number) {
+  try {
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/users/${id}`
+    );
+    if (response.data) return formatUser(response.data);
+  } catch (error) {
+    throw new Error("User not found");
+  }
 }
 
-// a supprimer plus tard
-async function ceciEstUnFauxTest() {
-    const result = await getUserSummary(1)
-    console.log(result)
+function formatUser(user: any) {
+  let name = user.name.split(" ")[0].toLowerCase();
+  const result = `${user.name} (${name}) - ${user.email}`;
+  console.log(result);
+  return result;
 }
 
-ceciEstUnFauxTest()
+getUserSummary(1);
